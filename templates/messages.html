@@ -1,0 +1,62 @@
+<!-- templates/messages.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-4">Messages</h2>
+        
+        <div class="space-y-4">
+            {% for message in messages %}
+                <div class="bg-white rounded-lg shadow p-4 {% if message.sender == request.user %}ml-12 border-l-4 border-blue-500{% else %}mr-12 border-l-4 border-green-500{% endif %}">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center space-x-2">
+                            {% if message.sender == request.user %}
+                                <span class="text-blue-600 font-semibold">You</span>
+                                <span class="text-gray-500">→</span>
+                                <span class="text-green-600 font-semibold">
+                                    {% if message.receiver.is_superuser %}
+                                        Executive Board
+                                    {% else %}
+                                        {{ message.receiver.country }}
+                                    {% endif %}
+                                </span>
+                            {% else %}
+                                <span class="text-green-600 font-semibold">
+                                    {% if message.sender.is_superuser %}
+                                        Executive Board
+                                    {% else %}
+                                        {{ message.sender.country }}
+                                    {% endif %}
+                                </span>
+                                <span class="text-gray-500">→</span>
+                                <span class="text-blue-600 font-semibold">You</span>
+                            {% endif %}
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-500">
+                                {{ message.timestamp|date:"M d, Y" }}
+                            </span>
+                            <span class="text-sm text-gray-500">
+                                {{ message.timestamp|time:"H:i" }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ message.content }}</p>
+                </div>
+            {% empty %}
+                <div class="text-center py-8 text-gray-500">
+                    No messages yet.
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="fixed bottom-4 right-4">
+            <a href="{% url 'dashboard' %}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600">
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

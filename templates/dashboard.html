@@ -1,0 +1,70 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="glass-morphism rounded-lg p-8 text-white mb-8">
+            <!-- Flag and Welcome Section -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold mb-4">Welcome, Delegate of {{ user.country }}</h1>
+                <div class="flex justify-center mb-6">
+                    {% if user.flag %}
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-black/10 rounded-lg backdrop-blur-sm -m-2"></div>
+                            <img src="{{ user.flag.url }}" 
+                                 alt="{{ user.country }} flag" 
+                                 class="h-40 object-contain relative z-10 rounded-lg shadow-2xl">
+                        </div>
+                    {% endif %}
+                </div>
+                <p class="text-lg opacity-80"> Eloquence - MUN {{ current_year }} - Shaping Tomorrow's Leaders</p>
+            </div>
+            
+            <!-- Dashboard Options -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <a href="{% url 'send_to_eb' %}" 
+                   class="block p-6 rounded-lg bg-white/10 hover:bg-white/20 transition-all transform hover:scale-105 hover:shadow-xl">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/20 flex items-center justify-center">
+                            <i class="fas fa-envelope-open-text text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Message Executive Board</h3>
+                        <p class="mt-2 text-sm opacity-80">Send formal communications to the EB</p>
+                    </div>
+                </a>
+
+                <a href="{% url 'send_to_nation' %}" 
+                   class="block p-6 rounded-lg bg-white/10 hover:bg-white/20 transition-all transform hover:scale-105 hover:shadow-xl">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
+                            <i class="fas fa-globe-americas text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Diplomatic Communications</h3>
+                        <p class="mt-2 text-sm opacity-80">Engage with other nations</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Official Documents Button -->
+            <div class="mt-10 text-center">
+                <a href="https://drive.google.com/drive/folders/108F7POmsNlhu4xP7vCeXmZ58ylXFqUsN?usp=sharing" 
+                   target="_blank"
+                   class="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full transition-all transform hover:scale-105 space-x-2">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Official Documents</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-white/70 text-sm">
+            <p>© Literary Club. All rights reserved.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Add this to ensure FontAwesome icons work -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+{% endblock %}
