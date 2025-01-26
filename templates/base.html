@@ -63,6 +63,12 @@
             
             {% if user.is_authenticated %}
                 <div class="flex items-center space-x-6">
+
+                    <a href="{% url 'dashboard' %}" 
+                       class="px-4 py-2 rounded-full glass-morphism hover:bg-white/20 transition-colors flex items-center">
+                        <i class="fas fa-columns mr-2"></i>
+                        Dashboard
+                    </a>
                     <span class="px-4 py-2 rounded-full glass-morphism">{{ user.country }}</span>
                     <a href="{% url 'messages' %}" class="relative group">
                         <span id="notification-count" 
