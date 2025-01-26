@@ -73,3 +73,6 @@ For major changes, please open an issue first to discuss what you would like to 
 ## About Literary Club, MNNIT
 The Literary Club of MNNIT Allahabad is an official club under SAC, MNNIT dedicated to fostering literary and diplomatic skills among students. 
 Eloquence, our annual fest, features various events including the Model United Nations conference, providing a platform for students to engage in diplomatic discourse and global problem-solving.
+
+## Deployment
+The hotline is live at : https://eloquencemun.pythonanywhere.com/
